@@ -1,35 +1,34 @@
 from PyQt5 import QtWidgets
 
-class LabelledPromptWindow(QtWidgets.QDialog):
-    def __init__(self, Prompt: str, ButtonText="Confirm"):
-        """A basic Horizontally layed out Prompt Window
-        with a QLineEdit for accepting user input.
+class QLabelledPromptWindow(QtWidgets.QDialog):
+    def __init__(self, prompt: str, buttonText="Confirm"):
+        """A basic Horizontally layed out prompt Window
+        with a QLineEdit for accepting user input. Fetch
+        the text using getInputText().
 
         Arguments:
-        string Prompt -- The prompt to provide the user
+        string prompt -- The prompt to provide the user
 
         Keyword Arguments
-        string ButtonText -- The text to show on the submit button
+        string buttonText -- The text to show on the submit button
             Default: "Confirm"
 
         Example:
-        LabelledPromptWindow("State your name", "Confirm")
+        QLabelledPromptWindow("State your name", "Confirm")
         """
-        super().__init__()
+        super(QLabelledPromptWindow, self).__init__()
         self.setGeometry(800, 400, 600, 50)
-        self.setWindowTitle(Prompt)
+        self.setWindowTitle(prompt)
 
-        # PROTECTED
         self._titleLabel = QtWidgets.QLabel(self)
-        self._titleLabel.setText(Prompt)
+        self._titleLabel.setText(prompt)
 
         self._inputField = QtWidgets.QLineEdit(self)
 
         self._confirmButton = QtWidgets.QPushButton(self)
-        self._confirmButton.setText(ButtonText)
-        self._confirmButton.clicked.connect(self.confirmClicked)
+        self._confirmButton.setText(buttonText)
+        self._confirmButton.clicked.connect(self.__confirmClicked)
 
-        # PRIVATE
         __layout = QtWidgets.QVBoxLayout(self)
         __layout.addStretch() # Ensure label stays with the input field
         __layout.addWidget(self._titleLabel)
@@ -38,10 +37,14 @@ class LabelledPromptWindow(QtWidgets.QDialog):
 
         self.setLayout(__layout)
 
-    def confirmClicked(self):
-        """Will close the window"""
-        self.accept()
+    def empty(self):
+        """Returns True if the input text field is empty."""
+        return len(self._inputField.text()) == 0
 
     def getInputText(self):
         """Return the string value currently in self._inputField"""
         return self._inputField.text()
+    
+    def __confirmClicked(self):
+        """Will close the window"""
+        self.accept()
