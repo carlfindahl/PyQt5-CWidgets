@@ -1,10 +1,14 @@
 from PyQt5 import QtWidgets
 
-class QLabelledPromptWindow(QtWidgets.QDialog):
+class QLabelledPromptWidget(QtWidgets.QDialog):
+    """A window that unconditionally asks for user input, and
+    that does not care if it receives any, or if it is considered
+    valid. It will simply prompt and receive. Any validation will
+    have to be done later.
+    """
+
     def __init__(self, prompt: str, buttonText="Confirm"):
-        """A basic Horizontally layed out prompt Window
-        with a QLineEdit for accepting user input. Fetch
-        the text using getInputText().
+        """Constructor for QLabelledPromptWidget
 
         Arguments:
         string prompt -- The prompt to provide the user
@@ -14,9 +18,10 @@ class QLabelledPromptWindow(QtWidgets.QDialog):
             Default: "Confirm"
 
         Example:
-        QLabelledPromptWindow("State your name", "Confirm")
+        QLabelledPromptWidget("State your name", "Confirm")
         """
-        super(QLabelledPromptWindow, self).__init__()
+
+        super(QLabelledPromptWidget, self).__init__()
         self.setGeometry(800, 400, 600, 50)
         self.setWindowTitle(prompt)
 
@@ -44,7 +49,7 @@ class QLabelledPromptWindow(QtWidgets.QDialog):
     def getInputText(self):
         """Return the string value currently in self._inputField"""
         return self._inputField.text()
-    
+
     def __confirmClicked(self):
         """Will close the window"""
         self.accept()

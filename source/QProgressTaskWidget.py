@@ -1,14 +1,16 @@
-import sys
 from PyQt5 import QtWidgets
 
 class QProgressTaskWidget(QtWidgets.QDialog):
-    """A widget which shows a progress bar."""
-    def __init__(self, taskName : str):
-        """A widget which shows a progress bar
-        
+    """A widget which shows a progress bar and tracks
+    a task that can be cancelled by the user.
+    """
+
+    def __init__(self, taskName):
+        """Constructor for QProgressTaskWidget
+
         Arguments:
-        taskName -- Title of the window and label before progress bar
-               
+        string taskName -- Title of the window and label before progress bar
+
         Example:
         W = QProgressTaskWidget("Clearing Forest")
         for i in range(100):
@@ -17,6 +19,7 @@ class QProgressTaskWidget(QtWidgets.QDialog):
             else:
                 W.close()
         """
+
         super(QProgressTaskWidget, self).__init__()
 
         self.setGeometry(800, 400, 600, 70)
@@ -29,7 +32,7 @@ class QProgressTaskWidget(QtWidgets.QDialog):
         self.__subTaskLabel.setText("Working...")
 
         self.__progressBar = QtWidgets.QProgressBar(self)
-        
+
         self.__cancelButton = QtWidgets.QPushButton(self)
         self.__cancelButton.clicked.connect(self.__cancelTask)
         self.__cancelButton.setText("Cancel")
@@ -52,11 +55,11 @@ class QProgressTaskWidget(QtWidgets.QDialog):
 
     def setProgress(self, value):
         """Set the progress of the task as a number between 0 and 100
-        
+
         Arguments:
-        value -- The new progress value (0 - 100)
-                
-        Example: 
+        int value -- The new progress value (0 - 100)
+
+        Example:
         for i in xrange(200):
             W.setProgress(i / 200 * 100)
         """
