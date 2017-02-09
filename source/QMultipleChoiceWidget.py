@@ -6,7 +6,7 @@ class QMultipleChoiceWidget(QtWidgets.QWidget):
     multiple choices that are unique to each other.
     """
 
-    def __init__(self, buttonDictionary : dict, parent=None):
+    def __init__(self, buttonDictionary, parent=None):
         """Constructor for QMultipleChoiceWidget
 
         Arguments:
@@ -25,7 +25,7 @@ class QMultipleChoiceWidget(QtWidgets.QWidget):
                                "Option 2" : someOtherfunction})
         """
 
-        super(QMultipleChoiceWidget, self).__init__(parent)
+        super().__init__(parent)
 
         if len(buttonDictionary) == 0:
             raise  Exception("The buttonDictionary argument can not be empty")

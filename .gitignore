@@ -1,2 +1,4 @@
 # Gitignore for PyQt Util Widgets
 *sublime-workspace
+*.pyc
+*test*

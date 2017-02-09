@@ -1,18 +1,18 @@
 from PyQt5 import QtWidgets
 
-class QProgressTaskWidget(QtWidgets.QDialog):
+class QProgressTaskDialog(QtWidgets.QDialog):
     """A widget which shows a progress bar and tracks
     a task that can be cancelled by the user.
     """
 
     def __init__(self, taskName):
-        """Constructor for QProgressTaskWidget
+        """Constructor for QProgressTaskDialog
 
         Arguments:
         string taskName -- Title of the window and label before progress bar
 
         Example:
-        W = QProgressTaskWidget("Clearing Forest")
+        W = QProgressTaskDialog("Clearing Forest")
         for i in range(100):
             if not W.isCancelled():
                 W.setProgress(i + 1)
@@ -20,7 +20,7 @@ class QProgressTaskWidget(QtWidgets.QDialog):
                 W.close()
         """
 
-        super(QProgressTaskWidget, self).__init__()
+        super().__init__()
 
         self.setGeometry(800, 400, 600, 70)
         self.setWindowTitle(taskName)

@@ -1,14 +1,14 @@
 from PyQt5 import QtWidgets
 
-class QLabelledPromptWidget(QtWidgets.QDialog):
+class QLabelledPromptDialog(QtWidgets.QDialog):
     """A window that unconditionally asks for user input, and
     that does not care if it receives any, or if it is considered
     valid. It will simply prompt and receive. Any validation will
     have to be done later.
     """
 
-    def __init__(self, prompt: str, buttonText="Confirm"):
-        """Constructor for QLabelledPromptWidget
+    def __init__(self, prompt, buttonText="Confirm"):
+        """Constructor for QLabelledPromptDialog
 
         Arguments:
         string prompt -- The prompt to provide the user
@@ -18,10 +18,10 @@ class QLabelledPromptWidget(QtWidgets.QDialog):
             Default: "Confirm"
 
         Example:
-        QLabelledPromptWidget("State your name", "Confirm")
+        QLabelledPromptDialog("State your name", "Confirm")
         """
 
-        super(QLabelledPromptWidget, self).__init__()
+        super().__init__()
         self.setGeometry(800, 400, 600, 50)
         self.setWindowTitle(prompt)
 
