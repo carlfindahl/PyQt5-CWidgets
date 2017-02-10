@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
 
+
 class QLabelledPromptDialog(QtWidgets.QDialog):
     """A window that unconditionally asks for user input, and
     that does not care if it receives any, or if it is considered
@@ -35,7 +36,7 @@ class QLabelledPromptDialog(QtWidgets.QDialog):
         self._confirmButton.clicked.connect(self.__confirmClicked)
 
         __layout = QtWidgets.QVBoxLayout(self)
-        __layout.addStretch() # Ensure label stays with the input field
+        __layout.addStretch()  # Ensure label stays with the input field
         __layout.addWidget(self._titleLabel)
         __layout.addWidget(self._inputField)
         __layout.addWidget(self._confirmButton)

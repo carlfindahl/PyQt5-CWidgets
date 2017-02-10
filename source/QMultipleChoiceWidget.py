@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
 
+
 class QMultipleChoiceWidget(QtWidgets.QWidget):
     """A dynamically populated widget with buttons that link
     to functions. Great if you need to provide the user with
@@ -28,7 +29,7 @@ class QMultipleChoiceWidget(QtWidgets.QWidget):
         super().__init__(parent)
 
         if len(buttonDictionary) == 0:
-            raise  Exception("The buttonDictionary argument can not be empty")
+            raise Exception("The buttonDictionary argument can not be empty")
 
         self.setGeometry(800, 400, 300, 80)
         self.setWindowTitle("Select an Option")

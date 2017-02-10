@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
 
+
 class QProgressTaskDialog(QtWidgets.QDialog):
     """A widget which shows a progress bar and tracks
     a task that can be cancelled by the user.
