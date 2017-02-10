@@ -1,4 +1,3 @@
-import sys
 import threading
 import subprocess
 import Resources
@@ -56,14 +55,7 @@ class QConsoleOutputWidget(QtWidgets.QWidget):
             self.__console.setStyleSheet(CSS.read())
 
         # Connect Signals
-        self.__console.textChanged.connect(self.__scrollOnTextChanged)
         self.readStdout.connect(self.printToConsole)
-
-    def __scrollOnTextChanged(self):
-        """This method scrolls down to the bottom of the console when
-        new text is added to it.
-        """
-        pass
 
     def __readFromProcess(self, process):
         """Method used internally by threads to read from a process
@@ -73,14 +65,14 @@ class QConsoleOutputWidget(QtWidgets.QWidget):
         Arguments:
         process -- The process to track in this thread
         """
-        while True:
-            print("Reading")
+        output = ""
+        while process.poll() is None or output:
             output = process.stdout.readline()
-            print("Read done")
-            if output == '' and process.poll() is not None:
-                break
             if output:
-                self.readStdout.emit(output.strip())
+                try:
+                    self.readStdout.emit(output.strip())
+                except:
+                    self.readStdout.emit(output.decode().strip())
 
     def addProcess(self, process):
         """Adds a process to show output for to the console window.
@@ -102,7 +94,6 @@ class QConsoleOutputWidget(QtWidgets.QWidget):
 
         self.__processes.append(process)
         newThread = threading.Thread(target=self.__readFromProcess, args=(process,))
-        newThread.daemon = True
         newThread.start()
         self.__processThreads.append(newThread)
 
@@ -120,12 +111,3 @@ class QConsoleOutputWidget(QtWidgets.QWidget):
         self.__printLock.acquire()
         self.__console.append(message)
         self.__printLock.release()
-
-
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    console = QConsoleOutputWidget()
-    console.show()
-    p = subprocess.Popen(["python", "testScript.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
-    console.addProcess(p)
-    sys.exit(app.exec_())

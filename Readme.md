@@ -6,3 +6,4 @@ This is a collection of my custom PyQt5 Widgets. The purpose of this repository 
   * Labelled Prompt Widget
   * Multiple Choice Widget
   * Progress Task Widget
+  * Console Output Widget
