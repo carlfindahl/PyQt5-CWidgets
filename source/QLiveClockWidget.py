@@ -53,7 +53,7 @@ class QLiveClockWidget(QtWidgets.QWidget):
         """Initialize the UI"""
 
         # Setup widgets
-        self._timeLabel = QtWidgets.QLabel("CLOCK", self)
+        self._timeLabel = QtWidgets.QLabel(self)
 
         # Setup layouts
         self._hLayout = QtWidgets.QHBoxLayout()
@@ -128,10 +128,3 @@ class QLiveClockWidget(QtWidgets.QWidget):
             retVal = copy.copy(self.currentTime)
             self.__timeLock.release()
             return retVal
-
-
-if __name__ == '__main__':
-    a = QtWidgets.QApplication([sys.argv])
-    c = QLiveClockWidget()
-    c.show()
-    a.exec_()
