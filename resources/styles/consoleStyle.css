@@ -1,6 +1,12 @@
-/* The Default Stylesheet for QConsoleOutputWidget */
+/* The Default Stylesheet for QConsoleOutputWidget
+!* and QConsoleInputWidget */
 
 QTextEdit {
+    background-color: #333;
+    color: #CCC;
+}
+
+QLineEdit {
     background-color: #333;
     color: #CCC;
 }
