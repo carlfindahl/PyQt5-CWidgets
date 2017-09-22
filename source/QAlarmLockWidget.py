@@ -11,6 +11,9 @@ class QAlarmLockWidget(QtWidgets.QWidget):
     need to remind you to do certain tasks at, or away from the
     computer. Hence why it can soft-lock your workstation for a given
     amount of time.
+
+    Signals:
+    alarmUnlocked -- Triggered when a locked AlarmLockWidget unlocks
     """
 
     alarmUnlocked = QtCore.pyqtSignal()
