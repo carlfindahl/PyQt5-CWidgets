@@ -63,7 +63,7 @@ class QAlarmLockWidget(QtWidgets.QWidget):
         self._alarmMessage.setText(message)
 
         self._closeButton = QtWidgets.QPushButton("CLOSE")
-        if self.locked:
+        if isLocked:
             self._closeButton.setEnabled(False)
         self._closeButton.clicked.connect(self.close)
         self._closeButton.setStyleSheet("background-color: #FFF; font-size: 20px;")

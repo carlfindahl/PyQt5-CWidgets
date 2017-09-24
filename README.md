@@ -12,4 +12,5 @@ This is a collection of my custom PyQt5 Widgets. The purpose of this repository 
 
 ### Notices
 Some widgets rely on Python 3.6 string formatting:
+
 `f"This is {variable} number {id}"`
